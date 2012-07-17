@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="./modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Install instructions for German (Formal Honorifics) language files of the TWC Star MOD]]></title>
+		<title lang="de"><![CDATA[Installationsanleitung für die Sprachdateien Deutsch "Sie" der TWC Star MOD]]></title>
+		<description lang="en"><![CDATA[This file provides instructions for installing the german (formal honorific) language files of this MOD. See the main install file for any additional information about the MOD.]]></description>
+		<description lang="de"><![CDATA[Diese Datei enthält Anweisungen zum Installieren der Deutsch "Sie" Sprachdateien dieser MOD. Für jegliche zusätzliche Information über die MOD sehen sie sich die Haupt-Installationsdatei an]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Thomas Wolf]]></realname>
+				<username><![CDATA[TW1920]]></username>
+				<homepage><![CDATA[http://twcportal.de/]]></homepage>
+				<email><![CDATA[TW1920@twcmail.de]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.1.3</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>180</time>
+			<target-version>3.0.10</target-version>
+		</installation>
+		<link-group>
+			<link type="dependency" href="../../install.xml" lang="en">Main Install File</link>
+			<link type="dependency" href="../../install.xml" lang="de">Haupt-Installationsdatei</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/language/de_x_sie/*.*" to="/language/de_x_sie/*.*"/>
+		</copy>
+		<diy-instructions lang="en"><![CDATA[After loading the files to your webspace german (formal honorifics) is installed successfully.
+
+Finally, empty the cache!]]></diy-instructions>
+		<diy-instructions lang="de"><![CDATA[Nach dem Kopieren der Dateien auf deinen Webspace ist Deutsch "Sie" erfolgreich installiert.
+
+Abschließend noch den Cache leeren!!!]]></diy-instructions>
+	</action-group>
+</mod>

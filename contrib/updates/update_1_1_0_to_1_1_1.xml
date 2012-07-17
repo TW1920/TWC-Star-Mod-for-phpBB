@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href=".//modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Update instructions for TWC Star MOD 1.1.0 to 1.1.1]]></title>
+		<title lang="de"><![CDATA[Aktualisierunsanleitung der TWC Star MOD 1.1.0 auf 1.1.1]]></title>
+		<description lang="en"><![CDATA[This file provides update instructions to update from v1.1.0 to v1.1.1 of this mod. See the main install file for any additional information about the MOD.]]></description>
+		<description lang="de"><![CDATA[Diese Datei beinhaltet Aktualisierungsanweisungen um von v1.1.0 auf v1.1.1 dieser MOD zu aktualisieren. Für zusätzliche Informationen über die MOD, siehe dir die Haupt-Installationsdatei an.]]></description>
+		<author-group>
+			<author>
+				<realname><![CDATA[Thomas Wolf]]></realname>
+				<username><![CDATA[TW1920]]></username>
+				<homepage><![CDATA[http://twcmail.de/de/]]></homepage>
+				<email><![CDATA[forum@twcmail.de]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.1.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.10</target-version>
+		</installation>
+		<history>
+			<entry>
+				<date>2011-02-23</date>
+				<rev-version>1.1.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] Fixed XHTML compliance]]></change>
+					<change><![CDATA[[FIX] Corrected install instructions]]></change>
+					<change><![CDATA[[CHG] Corrected subsilver2 template]]></change>
+					<change><![CDATA[[CHG] Adapted mod for phpBB coding guidelines]]></change>
+				</changelog>
+				<changelog lang="de">
+					<change><![CDATA[[FIX] Einhalten der XHTML Standards]]></change>
+					<change><![CDATA[[FIX] Installationsanleitung korrigiert]]></change>
+					<change><![CDATA[[CHG] SubSilver2 Template angepasst]]></change>
+					<change><![CDATA[[CHG] MOD an die phpBB Coderichtlinien angepasst]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-02-07</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] Fixed XHTML compliance]]></change>
+					<change><![CDATA[[FIX] Display readable while saving]]></change>
+					<change><![CDATA[[FIX] Display of the average rating adjusted]]></change>
+					<change><![CDATA[[NEW] Support for subsilver2]]></change>
+					<change><![CDATA[[FIX] Fixed the 5 star issue]]></change>
+					<change><![CDATA[[NEW] Successful verification for second Beta]]></change>
+				</changelog>
+				<changelog lang="de">
+					<change><![CDATA[[FIX] Einhalten von XHTML Standards]]></change>
+					<change><![CDATA[[FIX] Anzeige beim Speichern lesbar]]></change>
+					<change><![CDATA[[FIX] Anzeige der Durchschnittsbewertung angepasst]]></change>
+					<change><![CDATA[[NEW] SubSilver2 wird unterstützt]]></change>
+					<change><![CDATA[[FIX] Beheben des 5-Sterne-Fehlers]]></change>
+					<change><![CDATA[[NEW] Erfolgreiche Überprüfung für 2. Betaphase]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2011-02-03</date>
+				<rev-version>0.2.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[[FIX] Fixed the 5 star issue]]></change>
+					<change><![CDATA[[NEW] Successful verification for second Beta]]></change>
+				</changelog>
+				<changelog lang="de">
+					<change><![CDATA[[FIX] Beheben des 5-Sterne-Fehlers]]></change>
+					<change><![CDATA[[NEW] Erfolgreiche Überprüfung für 2. Betaphase]]></change>
+				</changelog>
+			</entry>
+		</history>
+		<link-group>
+			<link type="dependency" href="../../install.xml" lang="en">Main Install File</link>
+			<link type="dependency" href="../../install.xml" lang="de">Haupt-Installationsdatei</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/bw_mod/*.*" to="/bw_mod/*.*"/>
+			<file from="root/star.php" to="/star.php"/>
+			<file from="root/install.php" to="/install.php"/>
+			<file from="root/language/*.*" to="/language/*.*"/>
+			<file from="root/umil/*.*" to="/umil/*.*"/>
+			<file from="root/styles/subsilver2/template/*.*" to="styles/subsilver2/template/*.*"/>
+			<file from="root/styles/prosilver/template/*.*" to="styles/prosilver/template/*.*"/>
+		</copy>
+		<open src="viewtopic.php">
+			<edit>
+				<find><![CDATA[
+	//start BEW_MOD-project
+
+
+	//Auslesen der Daten
+
+	$sql = 'SELECT star, feed
+		FROM ' . TOPICS_TABLE . '
+		WHERE topic_id =' . $topic_id . '';
+
+
+	$result = $db->sql_query($sql);
+	while ($row = $db->sql_fetchrow($result)) 
+	{
+		//Konfigurieren der Variablen
+		$feed = $row['feed'];
+		$starcalc = $row['star'];
+
+		//Kontrollieren ob eine Bewertung abgegeben wurde bzw Berechnen
+		if ($starcalc > 1)
+		{
+			$starsum = $starcalc/$feed;
+		}
+		else
+		{
+			$starsum = 0;
+		}
+
+		//Auswählen der Sternbildnummer
+		if ($starsum < 0.4) {
+			$star = 0; 
+		}
+		elseif ($starsum < 0.9) {
+			$star = 11; 
+		}
+		elseif ($starsum < 1.4) {
+			$star = 1; 
+		}
+		elseif ($starsum < 1.9) {
+			$star = 12; 
+		}
+		elseif ($starsum < 2.4) {
+			$star = 2; 
+		}
+		elseif ($starsum < 2.9) {
+			$star = 13; 
+		}
+		elseif ($starsum < 3.4) {
+			$star = 3; 
+		}
+		elseif ($starsum < 3.9) {
+			$star = 14; 
+		}
+		elseif ($starsum < 4.4) {
+			$star = 4; 
+		}
+		elseif ($starsum < 4.9) {
+			$star = 15; 
+		}
+		else {
+		$star = 5; 
+		}
+
+		//Erzeugen der Durchschnittszahl
+		if ($starsum < 0.4) {
+			$startext = 'No Rating'; 
+		}
+		elseif ($starsum < 0.9) {
+			$startext = 0.5; 
+		}
+		elseif ($starsum < 1.4) {
+			$startext = 1; 
+		}
+		elseif ($starsum < 1.9) {
+			$startext = 1.5; 
+		}
+		elseif ($starsum < 2.4) {
+			$startext = 2; 
+		}
+		elseif ($starsum < 2.9) {
+			$startext = 2.5; 
+		}
+		elseif ($starsum < 3.4) {
+			$startext = 3; 
+		}
+		elseif ($starsum < 3.9) {
+			$startext = 3.5; 
+		}
+		elseif ($starsum < 4.4) {
+			$startext = 4; 
+		}
+		elseif ($starsum < 4.9) {
+			$startext = 4.5; 
+		}
+		else {
+			$star = 5; 
+			$startext = 5; 
+		}
+
+		$starsum = sprintf("%01.2f", $starsum);
+
+		//Konfigurieren der Templatevariablen
+		$template->assign_vars(array(
+			'N_STAR' 		=> $star,
+			'N_FEED' 		=> $feed,
+			'N_START' 		=> $startext,
+			'D_STARMAKE' 		=> append_sid("{$phpbb_root_path}star.$phpEx", 't=' . $topic_id),
+			'N_STARSUM' 		=> $starsum
+		));
+	}
+
+	// Ende BW_Mod
+
+]]></find>
+				<action type="replace-with"><![CDATA[	//start BEW_MOD-project
+
+	// Add TWC_Lang1
+	$user->add_lang('mods/twcmod1');
+
+	//Auslesen der Daten
+
+	$sql = 'SELECT star, feed
+			FROM ' . TOPICS_TABLE . '
+			WHERE topic_id = $topic_id';
+
+
+	$result = $db->sql_query($sql);
+	while ($row = $db->sql_fetchrow($result)) 
+	{
+		//Konfigurieren der Variablen
+		$feed = $row['feed'];
+		$starcalc = $row['star'];
+
+		//Kontrollieren ob eine Bewertung abgegeben wurde bzw Berechnen
+		if ($starcalc > 1)
+		{
+			$starsum = $starcalc/$feed;
+		}
+		else
+		{
+			$starsum = 0;
+		}
+
+		//Auswählen der Sternbildnummer
+		if ($starsum < 0.4) {
+			$star = 0; 
+		}
+		elseif ($starsum < 0.9) {
+			$star = 11; 
+		}
+		elseif ($starsum < 1.4) {
+			$star = 1; 
+		}
+		elseif ($starsum < 1.9) {
+			$star = 12; 
+		}
+		elseif ($starsum < 2.4) {
+			$star = 2; 
+		}
+		elseif ($starsum < 2.9) {
+			$star = 13; 
+		}
+		elseif ($starsum < 3.4) {
+			$star = 3; 
+		}
+		elseif ($starsum < 3.9) {
+			$star = 14; 
+		}
+		elseif ($starsum < 4.4) {
+			$star = 4; 
+		}
+		elseif ($starsum < 4.9) {
+			$star = 15; 
+		}
+		else {
+		$star = 5; 
+		}
+
+		//Erzeugen der Durchschnittszahl
+		if ($starsum < 0.4) {
+			$startext = 'No Rating'; 
+		}
+		elseif ($starsum < 0.9) {
+			$startext = 0.5; 
+		}
+		elseif ($starsum < 1.4) {
+			$startext = 1; 
+		}
+		elseif ($starsum < 1.9) {
+			$startext = 1.5; 
+		}
+		elseif ($starsum < 2.4) {
+			$startext = 2; 
+		}
+		elseif ($starsum < 2.9) {
+			$startext = 2.5; 
+		}
+		elseif ($starsum < 3.4) {
+			$startext = 3; 
+		}
+		elseif ($starsum < 3.9) {
+			$startext = 3.5; 
+		}
+		elseif ($starsum < 4.4) {
+			$startext = 4; 
+		}
+		elseif ($starsum < 4.9) {
+			$startext = 4.5; 
+		}
+		else {
+			$star = 5; 
+			$startext = 5; 
+		}
+
+		$starsum = sprintf("%01.2f", $starsum);
+
+		//Konfigurieren der Templatevariablen
+		$template->assign_vars(array(
+			'N_STAR' 		=> $star,
+			'N_FEED' 		=> $feed,
+			'N_START' 		=> $startext,
+			'D_STARMAKE' 		=> append_sid("{$phpbb_root_path}star.$phpEx", 't=' . $topic_id),
+			'N_STARSUM' 		=> $starsum
+		));
+	}
+
+	// Ende BW_Mod
+
+]]></action>
+			</edit>
+		</open>
+		<open src="/includes/constants.php">
+			<edit>
+				<find><![CDATA[	
+		// Additional tables
+
+]]></find>
+				<action type="after-add"><![CDATA[// BW_Konstanten
+define('STAR_RATING_TABLE',				$table_prefix . 'star_rating');
+
+]]></action>
+			</edit>
+		</open>
+		<open src="/styles/prosilver/template/viewtopic_body.html">
+			<edit>
+				<find><![CDATA[	
+	<script type="text/javascript">
+
+	function Bewerte () {
+	Fenster = window.open("{D_STARMAKE}", "Bewertung", "width=210,height=310,dependent=yes,location=no,menubar=no,scrollbars=no,status=no,toolbar=no");
+	}
+	</script>
+
+	<div align="center">{RATING}({N_FEED}): <img src="./bw_mod/images/star{N_STAR}.png"> : {N_STARSUM} | <!-- IF not S_IS_BOT and S_USER_LOGGED_IN --> | <a href="#" onclick="Bewerte(); return false;"> {GIVE_RATING} </a>  <!-- ENDIF --></div>
+
+
+]]></find>
+				<action type="replace-with"><![CDATA[	<script type="text/javascript">
+
+	function Bewerte () {
+	Fenster = window.open("{D_STARMAKE}", "Bewertung", "width=210,height=310,dependent=yes,location=no,menubar=no,scrollbars=no,status=no,toolbar=no");
+	}
+	</script>
+
+	<div align="center">{L_RATING}({N_FEED}): <img src="./bw_mod/images/star{N_STAR}.png" alt"{N_STARSUM}" /> : {N_STARSUM} | <!-- IF not S_IS_BOT and S_USER_LOGGED_IN --> | <a href="#" onclick="Bewerte(); return false;"> {L_GIVE_RATING} </a>  <!-- ENDIF --></div>
+
+]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[To complete the installation successfully please run the install.php.
+
+Finally, empty the cache and delete the install.php!]]></diy-instructions>
+		<diy-instructions lang="de"><![CDATA[Um die Installation erfolgreich zu beenden, führe bitte die install.php aus.
+
+Abschließend noch den Cache leeren und die install.php löschen!!!]]></diy-instructions>
+	</action-group>
+</mod>
